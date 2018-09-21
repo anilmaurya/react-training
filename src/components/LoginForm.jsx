@@ -6,18 +6,18 @@ import Label from './Label.jsx';
 const LoginForm = props => {
   return (
     // JSX
-    <form>
+    <form onSubmit={props.handleOnSubmit}>
       <div>
         <Label text='Email' />
-        <Input required='true' handleOnChange={this.props.handleOnChange}/>
+        <Input required={true} handleOnChange={props.handleOnChange} name='email'/>
       </div>
       <div>
         <Label text='Username' />
-        <Input />
+        <Input handleOnChange={props.handleOnChange} name='username'/>
       </div>
       <div>
         <Label text='Password' />
-        <Input inputType='password' required='true' />
+        <Input inputType='password' required={true} handleOnChange={props.handleOnChange} name='password'/>
       </div>
       <div>
         <Button text='Cancel'/>

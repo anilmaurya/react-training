@@ -5,9 +5,10 @@ const Input = props => {
     // JSX
     <div>
       <input
+        name={props.name}
         type={props.inputType}
         required={props.required}
-        onChange={ props.handleOnChange }
+        onChange={ props.handleOnChange}
       />
     </div>
   );
