@@ -9,7 +9,7 @@ const LoginForm = props => {
     <form>
       <div>
         <Label text='Email' />
-        <Input required='true'/>
+        <Input required='true' handleOnChange={this.props.handleOnChange}/>
       </div>
       <div>
         <Label text='Username' />

@@ -4,7 +4,11 @@ const Input = props => {
   return (
     // JSX
     <div>
-      <input type={props.inputType} required={props.required} />
+      <input
+        type={props.inputType}
+        required={props.required}
+        onChange={ props.handleOnChange }
+      />
     </div>
   );
 };
