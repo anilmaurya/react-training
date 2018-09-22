@@ -7,7 +7,7 @@ const ListItem = props => {
     <tr>
       <td>{props.item.subject}</td>
       <td>{props.item.body}</td>
-      <td><Button text='View'/></td>
+      <td><Button text='View' onClick={props.handleClick}/></td>
     </tr>
   )
 }

@@ -3,9 +3,8 @@ import ListItem from './ListItem'
 
 const EmailList = props => {
   const list = () => {
-
     return props.list.map((item) => {
-      return <ListItem item={item} key={item.subject}/>
+      return <ListItem item={item} key={item.id} handleClick={() => {props.handleClick(item.id)}}/>
       }
     )
   }
