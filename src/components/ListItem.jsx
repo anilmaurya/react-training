@@ -2,7 +2,6 @@ import React from 'react';
 import Button from './Button'
 
 const ListItem = props => {
-  console.log(props)
   return (
     <tr>
       <td>{props.item.subject}</td>

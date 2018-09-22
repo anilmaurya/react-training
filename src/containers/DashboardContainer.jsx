@@ -1,24 +1,20 @@
 import React, { Component } from 'react';
 import EmailList from '../components/EmailList.jsx'
 import ShowItem from '../components/ShowItem'
+import NewEmail from '../components/NewEmail'
 import {get} from '../apiHelpers'
+import {connect} from 'react-redux'
+import {fetchEmails} from '../actionCreators/emailActionCreators'
 
 class DashboardContainer extends Component {
-  state ={items: [], current_item: null}
+  state ={items: [], current_item: null, compose_email: false}
 
   componentDidMount() {
-    get("mails/inbox", "", { Authorization: this.props.token })
-      .then(jsonResponse => {
-        this.setState({ items: jsonResponse.data });
-      })
-      .catch(errorResponse => {
-        console.log("error", errorResponse);
-      });
+    this.props.fetchEmails()
   }
 
   onSelect = (id) => {
-    console.log(id)
-    let item = this.state.items.filter((item) => {
+    let item = this.props.emailList.filter((item) => {
       return item.id == id
     })[0]
     this.setState({
@@ -30,11 +26,16 @@ class DashboardContainer extends Component {
     return (
       <div>
         <h1> Dashboard</h1>
-        <EmailList list={this.state.items} handleClick={this.onSelect}/>
+        <EmailList list={this.props.emailList} handleClick={this.onSelect}/>
         { this.state.current_item && <ShowItem item={this.state.current_item} /> }
+        { this.state.compose_email && <NewEmail/> }
       </div>
     )
   }
 }
 
-export default DashboardContainer;
+const mapStateToProps = (state) => {
+  return state.emailReducer
+}
+
+export default connect(mapStateToProps, {fetchEmails: fetchEmails})(DashboardContainer)
